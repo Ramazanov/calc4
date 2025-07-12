@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Конструктор тура в Дагестан</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/tour-type.css">
+    <link rel="stylesheet" href="styles/accommodation.css">
+    <link rel="stylesheet" href="styles/meals.css">
+    <link rel="stylesheet" href="styles/excursions.css">
+    <link rel="stylesheet" href="styles/activities.css">
+    <link rel="stylesheet" href="styles/corporate.css">
+    <link rel="stylesheet" href="styles/sections.css">
+    <link rel="stylesheet" href="styles/order-form.css">
+</head>
+<body>
+    <div class="tour-calculator">
+        <!-- Header and Description -->
+        <div class="calculator-header">
+            <h1>Тур в Дагестан по твоим правилам</h1>
+            <p class="calculator-description">
+                Создайте свой идеальный тур в Дагестан! Выберите количество дней, тип размещения, 
+                питание и интересующие вас экскурсии. Мы поможем спланировать незабываемое 
+                путешествие, учитывая все ваши пожелания.
+            </p>
+        </div>
+        
+        <!-- Tour Type Section -->
+        <div class="calculator-section" data-section="tour-type">
+            <div class="section-header">
+                <i data-lucide="users"></i>
+                <h3>Тип тура</h3>
+            </div>
+            <div class="tour-type">
+                <button class="tour-type-btn active" data-type="individual">Индивидуальный тур</button>
+                <button class="tour-type-btn" data-type="corporate">Корпоративный тур</button>
+            </div>
+            <div class="tour-params">
+                <div class="param-group">
+                    <label class="param-label">Количество взрослых</label>
+                    <input type="number" class="param-input" id="adults-count" min="1" value="1">
+                </div>
+                <div class="param-group">
+                    <label class="param-label">Количество детей</label>
+                    <input type="number" class="param-input" id="children-count" min="0" value="0">
+                </div>
+                <div class="param-group">
+                    <label class="param-label">Количество дней</label>
+                    <input type="number" class="param-input" id="days-count" min="1" value="3">
+                </div>
+            </div>
+        </div>
+
+        <!-- Corporate Events Section -->
+        <div class="calculator-section corporate-events-section" data-section="corporate" style="display: none;">
+            <div class="section-header">
+                <i data-lucide="target"></i>
+                <h3>Корпоративные мероприятия</h3>
+            </div>
+            <div class="corporate-events-container">
+                <!-- Corporate events will be added dynamically -->
+            </div>
+        </div>
+
+        <!-- Accommodation Section -->
+        <div class="calculator-section" data-section="accommodation">
+            <div class="section-header">
+                <i data-lucide="home"></i>
+                <h3>Проживание</h3>
+            </div>
+            <div class="accommodation-options">
+                <!-- Accommodation options will be added dynamically -->
+            </div>
+        </div>
+
+        <!-- Meals Section -->
+        <div class="calculator-section" data-section="meals">
+            <div class="section-header">
+                <i data-lucide="utensils"></i>
+                <h3>Питание в туре</h3>
+            </div>
+            <div class="meals-options">
+                <!-- Meal options will be added dynamically -->
+            </div>
+        </div>
+
+        <!-- Excursions Section -->
+        <div class="calculator-section" data-section="excursions">
+            <div class="section-header">
+                <i data-lucide="map"></i>
+                <h3>Экскурсии в туре</h3>
+            </div>
+            <div class="excursions-container">
+                <div class="excursions-counter">Выбрано экскурсий: <span id="selected-excursions">0</span></div>
+                <div class="excursions-warning" id="excursions-warning">
+                    Количество экскурсий не может превышать количество дней тура
+                </div>
+                <!-- Excursion options will be added dynamically -->
+            </div>
+        </div>
+
+        <!-- Activities Section -->
+        <div class="calculator-section" data-section="activities">
+            <div class="section-header">
+                <i data-lucide="activity"></i>
+                <h3>Развлечения и дополнительные опции</h3>
+            </div>
+            <div class="activities-container">
+                <!-- Activities will be added dynamically -->
+            </div>
+        </div>
+
+        <!-- Tour Preview Section -->
+        <div class="calculator-section" data-section="preview">
+            <div class="section-header">
+                <i data-lucide="calendar"></i>
+                <h3>Предварительный просмотр тура</h3>
+            </div>
+            <div class="tour-preview"></div>
+        </div>
+
+        <button class="calculate-button" id="calculate-button">
+            Рассчитать стоимость тура
+        </button>
+        
+        <div class="price"></div>
+
+        <!-- Order Form -->
+        <div class="calculator-section" data-section="order" style="display: none;">
+            <div class="section-header">
+                <i data-lucide="send"></i>
+                <h3>Оформить заявку</h3>
+            </div>
+            <div class="order-form">
+                <!-- Order form content will be added dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="js/config.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/tour-type.js"></script>
+    <script src="js/accommodation.js"></script>
+    <script src="js/meals.js"></script>
+    <script src="js/excursions.js"></script>
+    <script src="js/activities.js"></script>
+    <script src="js/corporate.js"></script>
+    <script src="js/tour-preview.js"></script>
+    <script src="js/calculator.js"></script>
+    <script src="js/order-form.js"></script>
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>
