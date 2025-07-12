@@ -1,0 +1,109 @@
+.order-form {
+    padding: 0;
+}
+
+#tour-order-form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.tour-summary {
+    background-color: var(--primary-bg);
+    padding: 20px;
+    border-radius: var(--border-radius);
+}
+
+.tour-summary-title {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--accent-color);
+    margin-bottom: 16px;
+}
+
+.tour-summary-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.tour-summary-item:last-child {
+    border-bottom: none;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+    max-width: 100%;
+}
+
+.form-group label {
+    font-size: 14px;
+    color: #bbb;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px;
+    background-color: var(--primary-bg);
+    border: 1px solid #444;
+    border-radius: 8px;
+    color: var(--text-color);
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--accent-color);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.form-submit-btn {
+    width: 100%;
+    padding: 14px;
+    margin-top: 12px;
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.form-submit-btn:hover {
+    background-color: #3d8b40;
+}
+
+.form-submit-btn:disabled {
+    background-color: #666;
+    cursor: not-allowed;
+}
+
+@media (max-width: 480px) {
+    #tour-order-form {
+        gap: 16px;
+    }
+
+    .tour-summary {
+        padding: 16px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        padding: 10px;
+    }
+}
