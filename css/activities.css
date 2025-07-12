@@ -1,0 +1,116 @@
+/* Common styles for both excursions and activities */
+.excursions-container,
+.activities-container {
+    margin-top: 16px;
+}
+
+.excursion-card,
+.activity-card {
+    background-color: var(--primary-bg);
+    border: 1px solid #444;
+    border-radius: var(--border-radius);
+    padding: 12px;
+    margin-bottom: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.excursion-card:hover,
+.activity-card:hover {
+    border-color: var(--accent-color);
+}
+
+.excursion-card.selected,
+.activity-card.selected {
+    border-color: var(--accent-color);
+    background-color: rgba(76, 175, 80, 0.1);
+}
+
+.excursion-checkbox,
+.activity-checkbox {
+    display: none;
+}
+
+.excursion-info,
+.activity-info {
+    flex-grow: 1;
+    margin-right: 16px;
+}
+
+.excursion-name,
+.activity-name {
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.excursion-price,
+.activity-price {
+    color: var(--accent-color);
+    white-space: nowrap;
+}
+
+/* Excursions specific styles */
+.excursions-counter {
+    font-size: 14px;
+    color: #999;
+    margin-bottom: 12px;
+}
+
+.excursions-warning {
+    color: #ff4444;
+    font-size: 14px;
+    margin-top: 8px;
+    display: none;
+    padding: 8px;
+    border-radius: var(--border-radius);
+    background-color: rgba(255, 68, 68, 0.1);
+}
+
+.excursions-warning.visible {
+    display: block;
+}
+
+/* Activities specific styles */
+.activity-age-restriction {
+    font-size: 12px;
+    color: #ff9800;
+    margin-top: 4px;
+}
+
+.activity-badge {
+    font-size: 12px;
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-left: 8px;
+}
+
+.badge-child {
+    background-color: #2196F3;
+    color: white;
+}
+
+.badge-adult {
+    background-color: #4CAF50;
+    color: white;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+    .excursion-card,
+    .activity-card {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .excursion-price,
+    .activity-price {
+        margin-top: 8px;
+    }
+
+    .activity-badges {
+        margin-top: 8px;
+    }
+}
