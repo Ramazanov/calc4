@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="styles/meals.css">
     <link rel="stylesheet" href="styles/excursions.css">
     <link rel="stylesheet" href="styles/activities.css">
-    <link rel="stylesheet" href="styles/corporate.css">
     <link rel="stylesheet" href="styles/sections.css">
     <link rel="stylesheet" href="styles/order-form.css">
 </head>
@@ -20,48 +19,70 @@
         <div class="calculator-header">
             <h1>Тур в Дагестан по твоим правилам</h1>
             <p class="calculator-description">
-                Создайте свой идеальный тур в Дагестан! Выберите количество дней, тип размещения, 
-                питание и интересующие вас экскурсии. Мы поможем спланировать незабываемое 
-                путешествие, учитывая все ваши пожелания.
+                Создайте свой идеальный тур в Дагестан! Выберите даты путешествия, количество отдыхающих, 
+                тип размещения, питание и экскурсии. Мы поможем спланировать незабываемое путешествие, 
+                учитывая все ваши пожелания.
             </p>
         </div>
         
-        <!-- Tour Type Section -->
+        <!-- Tour Parameters Section -->
+ 
+<!-- Tour Parameters Section -->
+       <!-- Tour Parameters Section -->
         <div class="calculator-section" data-section="tour-type">
             <div class="section-header">
-                <i data-lucide="users"></i>
-                <h3>Тип тура</h3>
-            </div>
-            <div class="tour-type">
-                <button class="tour-type-btn active" data-type="individual">Индивидуальный тур</button>
-                <button class="tour-type-btn" data-type="corporate">Корпоративный тур</button>
+                <i data-lucide="calendar"></i>
+                <h3>Конструктор тура в Дагестан</h3>
             </div>
             <div class="tour-params">
-                <div class="param-group">
-                    <label class="param-label">Количество взрослых</label>
-                    <input type="number" class="param-input" id="adults-count" min="1" value="1">
+                <div class="param-group param-group-inline">
+                    <div class="param-text">
+                        <label class="param-label" for="start-date">Дата начала</label>
+                        <span class="param-note">Начало в аэропорту или в отеле в Махачкале.</span>
+                    </div>
+                    <input type="date" id="start-date" class="param-input date-input" placeholder="Выберите дату" value="">
                 </div>
-                <div class="param-group">
-                    <label class="param-label">Количество детей</label>
-                    <input type="number" class="param-input" id="children-count" min="0" value="0">
+                <div class="param-group param-group-inline">
+                    <div class="param-text">
+                        <label class="param-label" for="end-date">Дата окончания</label>
+                        <span class="param-note"> </span>
+                    </div>
+                    <input type="date" id="end-date" class="param-input date-input" placeholder="Выберите дату" value="">
                 </div>
-                <div class="param-group">
-                    <label class="param-label">Количество дней</label>
-                    <input type="number" class="param-input" id="days-count" min="1" value="3">
+                <div class="param-group param-group-inline">
+                    <div class="param-text">
+                        <label class="param-label" for="adults">Взрослых</label>
+                        <span class="param-note">12 лет и старше</span>
+                    </div>
+                    <div class="number-control">
+                        <button type="button" class="number-btn minus" onclick="updateNumber('adults', -1)">−</button>
+                        <input type="text" id="adults" class="param-input number-input" value="2" readonly>
+                        <button type="button" class="number-btn plus" onclick="updateNumber('adults', 1)">+</button>
+                    </div>
+                </div>
+                <div class="param-group param-group-inline">
+                    <div class="param-text">
+                        <label class="param-label" for="children">Детей</label>
+                        <span class="param-note">От 2 до 11 лет</span>
+                    </div>
+                    <div class="number-control">
+                        <button type="button" class="number-btn minus" onclick="updateNumber('children', -1)">−</button>
+                        <input type="text" id="children" class="param-input number-input" value="0" readonly>
+                        <button type="button" class="number-btn plus" onclick="updateNumber('children', 1)">+</button>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- Corporate Events Section -->
-        <div class="calculator-section corporate-events-section" data-section="corporate" style="display: none;">
-            <div class="section-header">
-                <i data-lucide="target"></i>
-                <h3>Корпоративные мероприятия</h3>
-            </div>
-            <div class="corporate-events-container">
-                <!-- Corporate events will be added dynamically -->
-            </div>
-        </div>
+<script>
+function updateNumber(inputId, change) {
+    var input = document.getElementById(inputId);
+    var value = parseInt(input.value) || 0;
+    value = Math.max(inputId === 'adults' ? 1 : 0, value + change); // Min 1 for adults, 0 for children
+    input.value = value;
+}
+</script>
+
 
         <!-- Accommodation Section -->
         <div class="calculator-section" data-section="accommodation">
@@ -100,26 +121,8 @@
             </div>
         </div>
 
-        <!-- Activities Section -->
-        <div class="calculator-section" data-section="activities">
-            <div class="section-header">
-                <i data-lucide="activity"></i>
-                <h3>Развлечения и дополнительные опции</h3>
-            </div>
-            <div class="activities-container">
-                <!-- Activities will be added dynamically -->
-            </div>
-        </div>
-
-        <!-- Tour Preview Section -->
-        <div class="calculator-section" data-section="preview">
-            <div class="section-header">
-                <i data-lucide="calendar"></i>
-                <h3>Предварительный просмотр тура</h3>
-            </div>
-            <div class="tour-preview"></div>
-        </div>
-
+ 
+ 
         <button class="calculate-button" id="calculate-button">
             Рассчитать стоимость тура
         </button>
@@ -146,9 +149,8 @@
     <script src="js/accommodation.js"></script>
     <script src="js/meals.js"></script>
     <script src="js/excursions.js"></script>
-    <script src="js/activities.js"></script>
-    <script src="js/corporate.js"></script>
-    <script src="js/tour-preview.js"></script>
+ 
+ 
     <script src="js/calculator.js"></script>
     <script src="js/order-form.js"></script>
     <script>
