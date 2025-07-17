@@ -22,12 +22,11 @@ class Activities {
         
         card.innerHTML = `
             <input type="checkbox" class="activity-checkbox" value="${activity.id}">
-            <div class="activity-content">
-                <div class="activity-header">
-                    <div class="activity-name">${activity.name}</div>
-                    ${activity.minAge ? `<div class="activity-age">Возраст: ${activity.minAge}+</div>` : ''}
-                </div>
+            <div class="activity-info">
+                <div class="activity-name">${activity.name}</div>
+                ${activity.minAge ? `<div class="activity-age-restriction">Возраст: ${activity.minAge}+</div>` : ''}
             </div>
+            <div class="activity-price">${formatPrice(activity.price)}</div>
         `;
         
         return card;
@@ -51,7 +50,7 @@ class Activities {
         if (e.target.checked) {
             // Проверка возрастных ограничений
             if (activity.minAge && window.tourType.getChildren() > 0) {
-                if (!confirm(`Это активность имеет возрастное ограничение ${activity.minAge}+. Вы уверены, что хотите её добавить?`)) {
+                if (!confirm(`Эта активность имеет возрастное ограничение ${activity.minAge}+. Вы уверены, что хотите её добавить?`)) {
                     e.preventDefault();
                     e.target.checked = false;
                     return;
