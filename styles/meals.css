@@ -3,6 +3,9 @@
     flex-direction: column;
     gap: 12px;
     margin-top: 16px;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
 }
 
 .meals-card {
@@ -15,91 +18,56 @@
     display: flex;
     align-items: center;
     gap: 12px;
+    width: 100%;
+    max-width: 300px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .meals-card:hover {
     border-color: var(--accent-color);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
 }
 
 .meals-card.selected {
     border-color: var(--accent-color);
     background-color: rgba(76, 175, 80, 0.1);
+    box-shadow: 0 4px 8px rgba(76, 175, 80, 0.2);
 }
 
-.meal-checkbox {
+.meal-radio {
     appearance: none;
     -webkit-appearance: none;
     width: 20px;
     height: 20px;
     border: 2px solid #666;
-    border-radius: 4px;
+    border-radius: 50%;
     cursor: pointer;
     position: relative;
     transition: all 0.3s ease;
 }
 
-.meal-checkbox:checked {
-    background-color: var(--accent-color);
+.meal-radio:checked {
     border-color: var(--accent-color);
+    background-color: var(--accent-color);
 }
 
-.meal-checkbox:checked::after {
-    content: "✓";
-    color: white;
+.meal-radio:checked::after {
+    content: "";
+    width: 10px;
+    height: 10px;
+    background-color: white;
+    border-radius: 50%;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 12px;
 }
 
 .meals-title {
     font-size: 15px;
-}
-
-.luxury-meals {
-    margin-top: 8px;
-    border-top: 1px solid #444;
-    padding-top: 16px;
-}
-
-.luxury-meals-checkbox {
-    display: none;
-}
-
-.luxury-meals-label {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    cursor: pointer;
-    padding: 8px;
-}
-
-.checkbox-custom {
-    width: 20px;
-    height: 20px;
-    border: 2px solid #666;
-    border-radius: 4px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-}
-
-.luxury-meals-checkbox:checked + .luxury-meals-label .checkbox-custom {
-    background-color: var(--accent-color);
-    border-color: var(--accent-color);
-}
-
-.checkbox-custom:after {
-    content: "✓";
-    color: white;
-    display: none;
-    font-size: 12px;
-}
-
-.luxury-meals-checkbox:checked + .luxury-meals-label .checkbox-custom:after {
-    display: block;
+    font-weight: 500;
+    color: #fff;
 }
 
 @media (max-width: 480px) {
@@ -107,8 +75,17 @@
         padding: 10px 12px;
     }
 
-    .meal-checkbox {
+    .meal-radio {
         width: 18px;
         height: 18px;
+    }
+
+    .meal-radio:checked::after {
+        width: 8px;
+        height: 8px;
+    }
+
+    .meals-title {
+        font-size: 14px;
     }
 }

@@ -1,34 +1,7 @@
-.tour-type {
-    display: flex;
-    gap: 12px;
-    margin-bottom: 24px;
-}
-
-.tour-type-btn {
-    flex: 1;
-    padding: 12px;
-    background-color: var(--primary-bg);
-    border: 1px solid var(--accent-color);
-    color: var(--text-color);
-    border-radius: var(--border-radius);
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-size: 15px;
-    font-weight: 500;
-}
-
-.tour-type-btn:hover {
-    background-color: rgba(76, 175, 80, 0.1);
-}
-
-.tour-type-btn.active {
-    background-color: var(--accent-color);
-    color: white;
-}
-
+/* Tour type specific styles */
 .tour-params {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    display: flex;
+    flex-direction: column;
     gap: 16px;
 }
 
@@ -39,17 +12,16 @@
 }
 
 .param-label {
+    font-weight: 600;
     font-size: 14px;
-    color: #bbb;
+    color: var(--text-color);
 }
 
 .param-input {
-    width: 100%;
-    box-sizing: border-box;
-    padding: 10px;
-    background-color: var(--primary-bg);
+    padding: 12px;
     border: 1px solid #444;
-    border-radius: 8px;
+    border-radius: var(--border-radius);
+    background-color: var(--primary-bg);
     color: var(--text-color);
     font-size: 14px;
     transition: border-color 0.3s ease;
@@ -60,8 +32,122 @@
     border-color: var(--accent-color);
 }
 
+/* Inline param-group for single-line layout */
+.param-group-inline {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    flex-direction: row;
+}
+
+/* Container for label and note */
+.param-text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+/* Number control container */
+.number-control {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Style for plus/minus buttons */
+.number-btn {
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    background-color: var(--primary-bg);
+    border: 1px solid var(--accent-color);
+    color: var(--text-color);
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    text-align: center;
+    line-height: 30px;
+    transition: background-color 0.3s ease;
+}
+
+.number-btn:hover {
+    background-color: rgba(76, 175, 80, 0.1);
+}
+
+.number-btn:active {
+    background-color: var(--accent-color);
+    color: white;
+}
+
+/* Style for number input */
+.number-input {
+    text-align: center;
+    width: 50px;
+    padding: 8px;
+}
+
+/* Style for explanatory notes */
+.param-note {
+    font-size: 12px;
+    color: #bbbbbb;
+    line-height: 1.2;
+}
+
+/* Style for date input */
+.date-input {
+    width: 140px;
+    flex-shrink: 0;
+}
+
+/* Date input styling */
+input[type="date"] {
+    color-scheme: dark;
+}
+
+/* Mobile-specific adjustments */
 @media (max-width: 480px) {
-    .tour-params {
-        grid-template-columns: 1fr;
+    .param-group-inline {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 8px;
+    }
+    
+    .param-text {
+        flex: 1;
+        min-width: 0;
+    }
+    
+    .number-control {
+        flex-shrink: 0;
+    }
+    
+    .date-input {
+        width: 120px;
+    }
+    
+    .param-label {
+        font-size: 13px;
+    }
+    
+    .param-input, .number-input {
+        padding: 8px;
+        font-size: 13px;
+    }
+    
+    .param-note {
+        font-size: 11px;
+    }
+    
+    .number-btn {
+        width: 28px;
+        height: 28px;
+        line-height: 26px;
+    }
+    
+    .number-input {
+        width: 40px;
     }
 }

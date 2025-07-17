@@ -56,6 +56,7 @@
     justify-content: space-between;
     align-items: center;
     gap: 12px;
+    flex-wrap: wrap;
 }
 
 .excursion-name {
@@ -84,7 +85,7 @@
     color: #bbb;
 }
 
-.difficulty-tag {
+.excursion-tag {
     display: inline-flex;
     align-items: center;
     gap: 4px;
@@ -94,22 +95,52 @@
     white-space: nowrap;
 }
 
-.difficulty-tag.легкая {
-    background-color: rgba(76, 175, 80, 0.1);
-    color: #4CAF50;
-}
-
-.difficulty-tag.средняя {
+.excursion-tag.треккинг {
     background-color: rgba(255, 152, 0, 0.1);
     color: #FF9800;
 }
 
-.difficulty-tag.сложная {
+.excursion-tag.эксклюзив {
+    background-color: rgba(156, 39, 176, 0.1);
+    color: #9C27B0;
+}
+
+.excursion-tag.история {
+    background-color: rgba(121, 85, 72, 0.1);
+    color: #795548;
+}
+
+.excursion-tag.природа {
+    background-color: rgba(76, 175, 80, 0.1);
+    color: #4CAF50;
+}
+
+.excursion-tag.водные {
+    background-color: rgba(33, 150, 243, 0.1);
+    color: #2196F3;
+}
+
+.excursion-tag.экстрим {
     background-color: rgba(244, 67, 54, 0.1);
     color: #F44336;
 }
 
-.difficulty-tag i {
+.excursion-tag.легкая {
+    background-color: rgba(76, 175, 80, 0.1);
+    color: #4CAF50;
+}
+
+.excursion-tag.средняя {
+    background-color: rgba(255, 152, 0, 0.1);
+    color: #FF9800;
+}
+
+.excursion-tag.сложная {
+    background-color: rgba(156, 39, 176, 0.1);
+    color: #9C27B0;
+}
+
+.excursion-tag i {
     width: 14px;
     height: 14px;
 }
@@ -120,8 +151,7 @@
     }
 
     .excursion-header {
-        flex-direction: column;
-        align-items: flex-start;
+        flex-wrap: wrap;
         gap: 8px;
     }
 
