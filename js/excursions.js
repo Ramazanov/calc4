@@ -28,7 +28,23 @@ class Excursions {
         this.initializeEventListeners();
     }
     
-createExcursionCard(excursion) {
+    getTagInfo(tag) {
+        const tagMapping = {
+            'треккинг': { icon: 'mountain', label: 'Треккинг' },
+            'эксклюзив': { icon: 'crown', label: 'Эксклюзив' },
+            'история': { icon: 'scroll', label: 'История' },
+            'природа': { icon: 'tree-pine', label: 'Природа' },
+            'водные': { icon: 'waves', label: 'Водные' },
+            'экстрим': { icon: 'zap', label: 'Экстрим' },
+            'легкая': { icon: 'sun', label: 'Легко' },
+            'средняя': { icon: 'mountain', label: 'Треккинг' },
+            'сложная': { icon: 'crown', label: 'Эксклюзив' }
+        };
+        
+        return tagMapping[tag] || { icon: 'map-pin', label: tag };
+    }
+
+    createExcursionCard(excursion) {
         const card = createElement('label', 'excursion-card');
         
         // Выбираем 3-4 основные характеристики экскурсии
@@ -37,14 +53,16 @@ createExcursionCard(excursion) {
             ...excursion.features.slice(0, 3)
         ];
         
+        const tagInfo = this.getTagInfo(excursion.difficulty);
+        
         card.innerHTML = `
             <input type="checkbox" class="excursion-checkbox" value="${excursion.id}">
             <div class="excursion-content">
                 <div class="excursion-header">
                     <div class="excursion-name">${excursion.name}</div>
-                    <span class="difficulty-tag ${excursion.difficulty}">
-                        <i data-lucide="activity"></i>
-                        ${excursion.difficulty.charAt(0).toUpperCase() + excursion.difficulty.slice(1)} сложность
+                    <span class="excursion-tag ${excursion.difficulty}">
+                        <i data-lucide="${tagInfo.icon}"></i>
+                        ${tagInfo.label}
                     </span>
                 </div>
                 
@@ -89,7 +107,7 @@ createExcursionCard(excursion) {
         const days = window.tourType.getDays();
         
         if (e.target.checked) {
-            if (this.selectedExcursions.size >= days) {
+            if (0 && (this.selectedExcursions.size >= days)) {
                 e.preventDefault();
                 e.target.checked = false;
                 this.warningElement.classList.add('visible');
@@ -112,6 +130,7 @@ createExcursionCard(excursion) {
     }
     
     validateExcursionsCount(days) {
+		 
         if (this.selectedExcursions.size > days) {
             const checkboxes = this.container.querySelectorAll('.excursion-checkbox:checked');
             const toUncheck = this.selectedExcursions.size - days;
@@ -125,6 +144,7 @@ createExcursionCard(excursion) {
             
             this.counterElement.textContent = this.selectedExcursions.size;
         }
+		
     }
 
     getSelectedExcursions() {

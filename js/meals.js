@@ -1,8 +1,7 @@
 class Meals {
     constructor() {
         this.container = document.querySelector('.meals-options');
-        this.selectedMeals = new Set();
-        this.luxuryEnabled = false;
+        this.selectedMealPackage = 'breakfast-only'; // Default to "Только завтраки"
         
         this.initializeMealsOptions();
     }
@@ -10,14 +9,18 @@ class Meals {
     initializeMealsOptions() {
         this.container.innerHTML = '';
         
-        // Добавляем чекбоксы для каждого приема пищи
+        // Добавляем радиокнопки для каждого пакета питания
         CONFIG.mealsOptions.forEach(option => {
             const card = this.createMealCard(option);
             this.container.appendChild(card);
         });
         
-        // Добавляем опцию премиального питания
-        this.container.appendChild(this.createLuxuryOption());
+        // Устанавливаем выбранный по умолчанию вариант
+        const defaultRadio = this.container.querySelector('.meal-radio[value="breakfast-only"]');
+        if (defaultRadio) {
+            defaultRadio.checked = true;
+            defaultRadio.closest('.meals-card').classList.add('selected');
+        }
         
         this.initializeEventListeners();
     }
@@ -26,80 +29,42 @@ class Meals {
         const card = createElement('label', 'meals-card');
         
         card.innerHTML = `
-            <input type="checkbox" class="meal-checkbox" value="${option.id}">
+            <input type="radio" name="meals-package" class="meal-radio" value="${option.id}">
             <span class="meals-title">${option.title}</span>
         `;
         
         return card;
     }
     
-    createLuxuryOption() {
-        const div = createElement('div', 'luxury-meals');
-        
-        div.innerHTML = `
-            <input type="checkbox" id="luxury-meals" class="luxury-meals-checkbox">
-            <label for="luxury-meals" class="luxury-meals-label">
-                <span class="checkbox-custom"></span>
-                <span class="meals-title">Премиальное питание (×2 к стоимости)</span>
-            </label>
-        `;
-        
-        return div;
-    }
-    
     initializeEventListeners() {
-        const checkboxes = this.container.querySelectorAll('.meal-checkbox');
-        const luxuryCheckbox = this.container.querySelector('.luxury-meals-checkbox');
+        const radios = this.container.querySelectorAll('.meal-radio');
         
-        checkboxes.forEach(checkbox => {
-            checkbox.addEventListener('change', (e) => {
-                this.handleMealChange(e);
+        radios.forEach(radio => {
+            radio.addEventListener('change', (e) => {
+                this.handleMealPackageChange(e);
             });
         });
-        
-        luxuryCheckbox.addEventListener('change', (e) => {
-            this.handleLuxuryChange(e);
-        });
     }
     
-    handleMealChange(e) {
-        const card = e.target.closest('.meals-card');
+    handleMealPackageChange(e) {
+        const cards = this.container.querySelectorAll('.meals-card');
+        cards.forEach(card => card.classList.remove('selected'));
         
-        if (e.target.checked) {
-            this.selectedMeals.add(e.target.value);
-            card.classList.add('selected');
-        } else {
-            this.selectedMeals.delete(e.target.value);
-            card.classList.remove('selected');
-        }
+        const selectedCard = e.target.closest('.meals-card');
+        selectedCard.classList.add('selected');
+        this.selectedMealPackage = e.target.value;
         
-        EventBus.dispatch('tourUpdate', {});
-    }
-    
-    handleLuxuryChange(e) {
-        this.luxuryEnabled = e.target.checked;
         EventBus.dispatch('tourUpdate', {});
     }
     
     getBasePrice() {
-        let totalPrice = 0;
-        this.selectedMeals.forEach(mealId => {
-            const meal = CONFIG.mealsOptions.find(m => m.id === mealId);
-            if (meal) {
-                totalPrice += meal.price;
-            }
-        });
-        return totalPrice;
-    }
-
-    isLuxury() {
-        return this.luxuryEnabled;
+        const packageOption = CONFIG.mealsOptions.find(m => m.id === this.selectedMealPackage);
+        return packageOption ? packageOption.price : 0;
     }
 
     getSelectedMeals() {
-        return Array.from(this.selectedMeals)
-            .map(id => CONFIG.mealsOptions.find(m => m.id === id))
-            .filter(Boolean);
+        const packageOption = CONFIG.mealsOptions.find(m => m.id === this.selectedMealPackage);
+        return packageOption ? packageOption.meals : [];
     }
 }
 

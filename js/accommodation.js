@@ -1,7 +1,7 @@
 class Accommodation {
     constructor() {
         this.container = document.querySelector('.accommodation-options');
-        this.selectedOption = 'none';
+        this.selectedOption = 'standard'; // Default to 'standard' since 'none' is removed
         
         this.initializeAccommodationOptions();
         
@@ -21,10 +21,11 @@ class Accommodation {
             this.container.appendChild(card);
         });
         
-        const firstRadio = this.container.querySelector('.accommodation-radio');
+        const firstRadio = this.container.querySelector('.accommodation-radio[value="standard"]');
         if (firstRadio) {
             firstRadio.checked = true;
             firstRadio.closest('.accommodation-card').classList.add('selected');
+            this.selectedOption = 'standard';
         }
         
         this.initializeEventListeners();
@@ -42,6 +43,7 @@ class Accommodation {
             <div class="accommodation-header">
                 <span class="accommodation-title">${option.title}</span>
             </div>
+ 
             <div class="accommodation-description">${option.description}</div>
         `;
         
@@ -74,23 +76,12 @@ class Accommodation {
         const radios = this.container.querySelectorAll('.accommodation-radio');
         
         if (days <= 1) {
-            // Если 1 день, оставляем доступным только "Проживание не включено"
+            // Для 1 дня делаем все варианты недоступными, кроме выбранного
             radios.forEach((radio, index) => {
                 const card = cards[index];
-                if (radio.value !== 'none') {
+                if (radio.value !== this.selectedOption) {
                     radio.disabled = true;
                     card.classList.add('disabled');
-                    
-                    // Если был выбран другой вариант, переключаем на "Проживание не включено"
-                    if (radio.checked) {
-                        const noneRadio = Array.from(radios).find(r => r.value === 'none');
-                        if (noneRadio) {
-                            noneRadio.checked = true;
-                            noneRadio.closest('.accommodation-card').classList.add('selected');
-                        }
-                        card.classList.remove('selected');
-                        this.selectedOption = 'none';
-                    }
                 }
             });
         } else {
