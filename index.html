@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Конструктор тура в Дагестан</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/dark.css">
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/tour-type.css">
     <link rel="stylesheet" href="styles/accommodation.css">
@@ -26,28 +28,25 @@
         </div>
         
         <!-- Tour Parameters Section -->
- 
-<!-- Tour Parameters Section -->
-       <!-- Tour Parameters Section -->
         <div class="calculator-section" data-section="tour-type">
             <div class="section-header">
                 <i data-lucide="calendar"></i>
                 <h3>Конструктор тура в Дагестан</h3>
             </div>
             <div class="tour-params">
-                <div class="param-group param-group-inline">
-                    <div class="param-text">
-                        <label class="param-label" for="start-date">Дата начала</label>
-                        <span class="param-note">Начало в аэропорту или в отеле в Махачкале.</span>
+                <div class="param-group">
+                    <label class="param-label">Тип тура</label>
+                    <span class="param-note">Выберите подходящий формат путешествия</span>
+                    <div class="tour-type-options">
+                        <!-- Tour type options will be added dynamically -->
                     </div>
-                    <input type="date" id="start-date" class="param-input date-input" placeholder="Выберите дату" value="">
                 </div>
                 <div class="param-group param-group-inline">
                     <div class="param-text">
-                        <label class="param-label" for="end-date">Дата окончания</label>
-                        <span class="param-note"> </span>
+                        <label class="param-label" for="date-range">Даты поездки</label>
+                        <span class="param-note">Выберите даты начала и окончания тура</span>
                     </div>
-                    <input type="date" id="end-date" class="param-input date-input" placeholder="Выберите дату" value="">
+                    <input type="text" id="date-range" class="param-input date-range-input" placeholder="Выберите даты" readonly>
                 </div>
                 <div class="param-group param-group-inline">
                     <div class="param-text">
@@ -73,16 +72,6 @@
                 </div>
             </div>
         </div>
-
-<script>
-function updateNumber(inputId, change) {
-    var input = document.getElementById(inputId);
-    var value = parseInt(input.value) || 0;
-    value = Math.max(inputId === 'adults' ? 1 : 0, value + change); // Min 1 for adults, 0 for children
-    input.value = value;
-}
-</script>
-
 
         <!-- Accommodation Section -->
         <div class="calculator-section" data-section="accommodation">
@@ -121,8 +110,17 @@ function updateNumber(inputId, change) {
             </div>
         </div>
 
- 
- 
+        <!-- Activities Section -->
+        <div class="calculator-section" data-section="activities">
+            <div class="section-header">
+                <i data-lucide="zap"></i>
+                <h3>Активности</h3>
+            </div>
+            <div class="activities-container">
+                <!-- Activity options will be added dynamically -->
+            </div>
+        </div>
+
         <button class="calculate-button" id="calculate-button">
             Рассчитать стоимость тура
         </button>
@@ -143,14 +141,15 @@ function updateNumber(inputId, change) {
 
     <!-- Scripts -->
     <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ru.js"></script>
     <script src="js/config.js"></script>
     <script src="js/utils.js"></script>
     <script src="js/tour-type.js"></script>
     <script src="js/accommodation.js"></script>
     <script src="js/meals.js"></script>
     <script src="js/excursions.js"></script>
- 
- 
+    <script src="js/activities.js"></script>
     <script src="js/calculator.js"></script>
     <script src="js/order-form.js"></script>
     <script>
