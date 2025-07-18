@@ -1,7 +1,4 @@
-.excursions-container {
-    margin-top: 16px;
-}
-
+/* Excursions specific styles */
 .excursions-counter {
     font-size: 14px;
     color: #999;
@@ -20,29 +17,6 @@
 
 .excursions-warning.visible {
     display: block;
-}
-
-.excursion-card {
-    background-color: var(--primary-bg);
-    border: 1px solid #444;
-    border-radius: var(--border-radius);
-    padding: 16px;
-    margin-bottom: 12px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.excursion-card:hover {
-    border-color: var(--accent-color);
-}
-
-.excursion-card.selected {
-    border-color: var(--accent-color);
-    background-color: rgba(76, 175, 80, 0.1);
-}
-
-.excursion-checkbox {
-    display: none;
 }
 
 .excursion-content {
@@ -140,16 +114,14 @@
     color: #9C27B0;
 }
 
-.excursion-tag i {
+.excursion-tag i,
+.excursion-tag svg {
     width: 14px;
     height: 14px;
 }
 
+/* Responsive adjustments for excursions */
 @media (max-width: 480px) {
-    .excursion-card {
-        padding: 12px;
-    }
-
     .excursion-header {
         flex-wrap: wrap;
         gap: 8px;
@@ -157,5 +129,23 @@
 
     .excursion-features {
         gap: 6px;
+    }
+
+    .excursion-name {
+        font-size: 15px;
+    }
+
+    .excursion-description {
+        font-size: 13px;
+    }
+
+    .feature-tag {
+        font-size: 11px;
+        padding: 3px 8px;
+    }
+
+    .excursion-tag {
+        font-size: 11px;
+        padding: 3px 8px;
     }
 }

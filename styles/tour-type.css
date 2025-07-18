@@ -1,3 +1,67 @@
+/* Tour type options */
+.tour-type-options {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 12px;
+}
+
+.tour-type-card {
+    background-color: var(--primary-bg);
+    border: 1px solid #444;
+    border-radius: var(--border-radius);
+    padding: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: block;
+}
+
+.tour-type-card:hover {
+    border-color: var(--accent-color);
+}
+
+.tour-type-card.selected {
+    border-color: var(--accent-color);
+    background-color: rgba(76, 175, 80, 0.1);
+}
+
+.tour-type-radio {
+    display: none;
+}
+
+.tour-type-content {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.tour-type-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.tour-type-header i,
+.tour-type-header svg {
+    width: 20px;
+    height: 20px;
+    color: var(--accent-color);
+    flex-shrink: 0;
+}
+
+.tour-type-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.tour-type-description {
+    font-size: 14px;
+    line-height: 1.4;
+    color: #bbb;
+    margin-left: 32px;
+}
+
 /* Tour type specific styles */
 .tour-params {
     display: flex;
@@ -95,10 +159,77 @@
     line-height: 1.2;
 }
 
-/* Style for date input */
-.date-input {
-    width: 140px;
+/* Date range input styling */
+.date-range-input {
+    width: 250px;
     flex-shrink: 0;
+    cursor: pointer;
+}
+
+/* Flatpickr dark theme customization */
+.flatpickr-calendar {
+    background: var(--secondary-bg) !important;
+    border: 1px solid #444 !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+}
+
+.flatpickr-months {
+    background: var(--primary-bg) !important;
+}
+
+.flatpickr-month {
+    color: var(--text-color) !important;
+}
+
+.flatpickr-weekday {
+    color: #bbb !important;
+}
+
+.flatpickr-day {
+    color: var(--text-color) !important;
+}
+
+.flatpickr-day:hover {
+    background: rgba(76, 175, 80, 0.2) !important;
+}
+
+.flatpickr-day.selected {
+    background: var(--accent-color) !important;
+    border-color: var(--accent-color) !important;
+}
+
+.flatpickr-day.inRange {
+    background: rgba(76, 175, 80, 0.3) !important;
+    border-color: transparent !important;
+}
+
+.flatpickr-day.startRange,
+.flatpickr-day.endRange {
+    background: var(--accent-color) !important;
+    border-color: var(--accent-color) !important;
+}
+
+.flatpickr-day.today {
+    border-color: var(--accent-color) !important;
+}
+
+.flatpickr-day.disabled {
+    color: #666 !important;
+}
+
+.flatpickr-prev-month,
+.flatpickr-next-month {
+    color: var(--text-color) !important;
+}
+
+.flatpickr-prev-month:hover,
+.flatpickr-next-month:hover {
+    color: var(--accent-color) !important;
+}
+
+.flatpickr-current-month .flatpickr-monthDropdown-months {
+    background: var(--primary-bg) !important;
+    color: var(--text-color) !important;
 }
 
 /* Date input styling */
@@ -106,7 +237,111 @@ input[type="date"] {
     color-scheme: dark;
 }
 
-/* Mobile-specific adjustments */
+/* Common styles for both excursions and activities */
+.excursions-container,
+.activities-container {
+    margin-top: 16px;
+}
+
+.excursion-card,
+.activity-card {
+    background-color: var(--primary-bg);
+    border: 1px solid #444;
+    border-radius: var(--border-radius);
+    padding: 16px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.excursion-card:hover,
+.activity-card:hover {
+    border-color: var(--accent-color);
+}
+
+.excursion-card.selected,
+.activity-card.selected {
+    border-color: var(--accent-color);
+    background-color: rgba(76, 175, 80, 0.1);
+}
+
+.excursion-checkbox,
+.activity-checkbox {
+    display: none;
+}
+
+/* Activity specific styles */
+.activity-content {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.activity-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.activity-name {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--accent-color);
+}
+
+.activity-price {
+    color: var(--accent-color);
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.activity-description {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #bbb;
+}
+
+.activity-details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    align-items: center;
+}
+
+.activity-duration,
+.activity-age {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: #999;
+}
+
+.activity-duration i,
+.activity-age i {
+    width: 14px;
+    height: 14px;
+    color: var(--accent-color);
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+    .excursion-card,
+    .activity-card {
+        padding: 12px;
+    }
+
+    .activity-header {
+        flex-direction: column;
+        gap: 8px;
+        align-items: flex-start;
+    }
+
+    .activity-details {
+        gap: 12px;
+    }
+}
 @media (max-width: 480px) {
     .param-group-inline {
         flex-direction: row;
@@ -124,8 +359,8 @@ input[type="date"] {
         flex-shrink: 0;
     }
     
-    .date-input {
-        width: 120px;
+    .date-range-input {
+        width: 180px;
     }
     
     .param-label {
@@ -149,5 +384,40 @@ input[type="date"] {
     
     .number-input {
         width: 40px;
+    }
+
+    /* Flatpickr mobile adjustments */
+    .flatpickr-calendar {
+        font-size: 14px !important;
+    }
+
+    .flatpickr-day {
+        width: 30px !important;
+        height: 30px !important;
+        line-height: 30px !important;
+    }
+
+    /* Tour type mobile adjustments */
+    .tour-type-card {
+        padding: 14px;
+    }
+
+    .tour-type-header {
+        gap: 10px;
+    }
+
+    .tour-type-header i,
+    .tour-type-header svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    .tour-type-title {
+        font-size: 15px;
+    }
+
+    .tour-type-description {
+        font-size: 13px;
+        margin-left: 28px;
     }
 }
